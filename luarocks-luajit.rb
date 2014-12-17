@@ -14,19 +14,15 @@ class LuarocksLuajit < Formula
 
   head "https://github.com/keplerproject/luarocks.git"
 
-  option "with-luajit", "Use LuaJIT instead of the stock Lua"
-  option "with-lua51", "Use Lua 5.1 instead of the stock Lua"
+  option "with-lua51",  "Use Lua 5.1 instead of LuaJIT"
 
-  if build.with? "luajit"
+  if build.with? "lua51"
+    depends_on "lua51"
+  else
     depends_on "luajit"
     # luajit depends internally on lua being installed
     # and is only 5.1 compatible, see #25954
-    depends_on "lua51"
-  elsif
-   build.with? "lua51"
-    depends_on "lua51"
-  else
-    depends_on "lua"
+    # depends_on "lua51"
   end
 
   fails_with :llvm do
@@ -39,13 +35,6 @@ class LuarocksLuajit < Formula
             "--rocks-tree=#{HOMEBREW_PREFIX}",
             "--sysconfdir=#{etc}/luarocks"]
 
-    if build.with? "lua"
-      lua_prefix = Formula["lua"].opt_prefix
-
-      args << "--with-lua=#{lua_prefix}"
-      args << "--lua-version=5.2"
-    end
-
     if build.with? "lua51"
       lua51_prefix = Formula["lua51"].opt_prefix
 
@@ -53,9 +42,8 @@ class LuarocksLuajit < Formula
       args << "--with-lua-include=#{lua51_prefix}/include/lua-5.1"
       args << "--lua-version=5.1"
       args << "--lua-suffix=5.1"
-    end
 
-    if build.with? "luajit"
+    else
       luajit_prefix = Formula["luajit"].opt_prefix
 
       args << "--with-lua=#{luajit_prefix}"
