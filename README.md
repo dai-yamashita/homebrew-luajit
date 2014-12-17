@@ -1,6 +1,5 @@
-LuaRocks for LuaJIT
+LuaJIT Homebrew Taps
 ===
+LuaJIT Homebrew Taps.
 
-A homebrew tap for luarocks using luajit instead of lua
-
-The formula is luarocks-luajit, and it's shamelessly copied from @DomT4's [gist](https://gist.github.com/DomT4/bc1e58d8237806b23464). Thanks!!
+The reason for creating this tap is to house a custom install of luarocks which works with luajit (as opposed to defaulting to lua 5.2). It is shamelessly copied from @DomT4's [gist](https://gist.github.com/DomT4/bc1e58d8237806b23464). Thank you Dominyk.
