@@ -3,13 +3,13 @@ require "formula"
 class LuarocksLuajit < Formula
   homepage "http://luarocks.org"
   url "http://luarocks.org/releases/luarocks-2.2.0.tar.gz"
-  sha1 "e2de00f070d66880f3766173019c53a23229193d"
+  sha256 "e2de00f070d66880f3766173019c53a23229193d"
   revision 1
 
   bottle do
-    sha1 "eabd3d0f2bb7979ac831ce948e8d288569d2a0c8" => :mavericks
-    sha1 "fb6956c0ee42f3bfdde280693cf28d32b3587e55" => :mountain_lion
-    sha1 "140ee3fd55954d1fd30984620d8f109056ef56f9" => :lion
+    sha256 "eabd3d0f2bb7979ac831ce948e8d288569d2a0c8" => :mavericks
+    sha256 "fb6956c0ee42f3bfdde280693cf28d32b3587e55" => :mountain_lion
+    sha256 "140ee3fd55954d1fd30984620d8f109056ef56f9" => :lion
   end
 
   head "https://github.com/keplerproject/luarocks.git"
