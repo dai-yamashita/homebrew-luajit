@@ -61,12 +61,11 @@ class LuarocksLuajit < Formula
     system "make", "install"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats
     Rocks install to: #{HOMEBREW_PREFIX}/lib/luarocks/rocks
 
     You may need to run `luarocks install` inside the Homebrew build
     environment for rocks to successfully build. To do this, first run `brew sh`.
-    EOS
   end
 
   test do
