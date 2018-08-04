@@ -62,10 +62,13 @@ class LuarocksLuajit < Formula
   end
 
   def caveats
-    Rocks install to: #{HOMEBREW_PREFIX}/lib/luarocks/rocks
-
-    You may need to run `luarocks install` inside the Homebrew build
-    environment for rocks to successfully build. To do this, first run `brew sh`.
+    if build.with? "lua51"
+      print "Luarocks is available at: #{HOMEBREW_PREFIX}/bin/luarocks-5.1\n"
+    else
+      print "Luarocks is available at: #{HOMEBREW_PREFIX}/bin/luarocks-jit\n"
+    end
+    print "Rocks install to: #{HOMEBREW_PREFIX}/lib/luarocks/rocks-5.1\n"
+    print "A configuration file has been placed at: #{HOMEBREW_PREFIX}/etc/luarocks/config-5.1.lua\n"
   end
 
   test do
