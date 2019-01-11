@@ -3,7 +3,7 @@ require "formula"
 class LuarocksLuajit < Formula
   homepage "https://luarocks.org"
   url "https://luarocks.org/releases/luarocks-3.0.4.tar.gz"
-  sha256 "ce82a2ebe8b5707d18aa99b56cbb995147fee55749f0d994157e8ed62d29f2d4"
+  sha256 "1236a307ca5c556c4fed9fdbd35a7e0e80ccf063024becc8c3bf212f37ff0edf"
   revision 1
 
   # bottle do
