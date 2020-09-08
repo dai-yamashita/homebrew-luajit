@@ -21,19 +21,17 @@ class LuarocksLuajit < Formula
   fails_with :llvm do
     cause "Lua itself compiles with llvm, but may fail when other software tries to link."
   end
-
+  
   def install
     # Install to the Cellar, but direct modules to HOMEBREW_PREFIX
     args = ["--prefix=#{prefix}",
             "--rocks-tree=#{HOMEBREW_PREFIX}",
             "--sysconfdir=#{etc}/luarocks"]
-
-    luajit_prefix = Formula["luajit"].opt_prefix
-
-    args << "--with-lua=#{luajit_prefix}"
-    args << "--lua-version=5.1"
+    
+    args << "--with-lua=/usr/local"
+    args << "--with-luajit"
     args << "--lua-suffix=jit"
-    args << "--with-lua-include=#{luajit_prefix}/include/luajit-2.1"
+    args << "--with-lua-include=/usr/local/include/luajit-2.1"
     
     system "./configure", *args
     system "make", "build"
