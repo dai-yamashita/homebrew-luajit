@@ -18,17 +18,6 @@ class LuarocksLuajit < Formula
 
   head "https://github.com/keplerproject/luarocks.git"
 
-  option "with-lua51",  "Use Lua 5.1 instead of LuaJIT"
-
-  if build.with? "lua51"
-    depends_on "lua51"
-  else
-    depends_on "luajit"
-    # luajit depends internally on lua being installed
-    # and is only 5.1 compatible, see #25954
-    # depends_on "lua51"
-  end
-
   fails_with :llvm do
     cause "Lua itself compiles with llvm, but may fail when other software tries to link."
   end
@@ -39,34 +28,20 @@ class LuarocksLuajit < Formula
             "--rocks-tree=#{HOMEBREW_PREFIX}",
             "--sysconfdir=#{etc}/luarocks"]
 
-    if build.with? "lua51"
-      lua51_prefix = Formula["lua51"].opt_prefix
+    luajit_prefix = Formula["luajit"].opt_prefix
 
-      args << "--with-lua=#{lua51_prefix}"
-      args << "--with-lua-include=#{lua51_prefix}/include/lua-5.1"
-      args << "--lua-version=5.1"
-      args << "--lua-suffix=5.1"
-
-    else
-      luajit_prefix = Formula["luajit"].opt_prefix
-
-      args << "--with-lua=#{luajit_prefix}"
-      args << "--lua-version=5.1"
-      args << "--lua-suffix=jit"
-      args << "--with-lua-include=#{luajit_prefix}/include/luajit-2.1"
-    end
-
+    args << "--with-lua=#{luajit_prefix}"
+    args << "--lua-version=5.1"
+    args << "--lua-suffix=jit"
+    args << "--with-lua-include=#{luajit_prefix}/include/luajit-2.1"
+    
     system "./configure", *args
     system "make", "build"
     system "make", "install"
   end
 
   def caveats
-    if build.with? "lua51"
-      print "Luarocks is available at: #{HOMEBREW_PREFIX}/bin/luarocks-5.1\n"
-    else
-      print "Luarocks is available at: #{HOMEBREW_PREFIX}/bin/luarocks-jit\n"
-    end
+    print "Luarocks is available at: #{HOMEBREW_PREFIX}/bin/luarocks-jit\n"
     print "Rocks install to: #{HOMEBREW_PREFIX}/lib/luarocks/rocks-5.1\n"
     print "A configuration file has been placed at: #{HOMEBREW_PREFIX}/etc/luarocks/config-5.1.lua\n"
   end
