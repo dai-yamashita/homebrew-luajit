@@ -23,7 +23,7 @@ class LuarocksLuajit < Formula
   if build.with? "lua51"
     depends_on "lua51"
   else
-    depends_on "luajit"
+    depends_on "jit"
     # luajit depends internally on lua being installed
     # and is only 5.1 compatible, see #25954
     # depends_on "lua51"
