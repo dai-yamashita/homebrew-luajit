@@ -29,7 +29,6 @@ class LuarocksLuajit < Formula
             "--sysconfdir=#{etc}/luarocks"]
     
     args << "--with-lua=/usr/local"
-    args << "--with-luajit"
     args << "--lua-suffix=jit"
     args << "--with-lua-include=/usr/local/include/luajit-2.1"
     
